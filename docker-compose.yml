@@ -8,7 +8,7 @@ services:
       - ./data/db/mongo_data_1:/data/db
     networks:
       - mongo-cluster
-    environment:
+    env_file:
       .env
 
 volumes:
