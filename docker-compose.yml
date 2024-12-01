@@ -5,7 +5,7 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - ./data/db/mongo_data_1:/data/db
+      - ./data/db/mongo_data:/data/db
     networks:
       - mongo-cluster
     env_file:
