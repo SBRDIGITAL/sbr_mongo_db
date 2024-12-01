@@ -13,81 +13,23 @@
      docker-compose --version
      ```
 
-### Шаг 2: Создание проекта
+### Шаг 2: Клонирование репозитория
 
-1. **Создайте директорию для проекта**:
-   - Создайте новую папку на вашем компьютере, например `mongo_db`.
-
-2. **Перейдите в созданную папку**:
+1. **Склонируйте репозиторий**:
+   - Используйте следующую команду для клонирования репозитория:
    ```bash
-   cd path\to\mongo_db
+   git clone https://github.com/SBRDIGITAL/sbr_mongo_db.git
    ```
 
-3. **Создайте директории для хранения данных**:
-   - Создайте директории для хранения данных MongoDB. Это может быть сделано вручную или с помощью командной строки:
+2. **Перейдите в директорию `mondocker`**:
    ```bash
-   mkdir -p data/db/mongo1
-   mkdir -p data/db/mongo2
-   mkdir -p data/db/mongo3
+   cd path\to\клонированный_репозиторий\mondocker
    ```
 
-### Шаг 3: Создание файла `docker-compose.yml`
-
-1. **Создайте файл `docker-compose.yml`**:
-   - В корне проекта создайте файл с именем `docker-compose.yml` и добавьте следующий код:
-
-   ```yaml
-    services:
-        mongo1:
-            image: mongo:latest
-            container_name: mongo1
-            ports:
-            - "27017:27017"
-            volumes:
-            - mongo1-data:/data/db
-            networks:
-            - mongo-cluster
-            command: ["mongod", "--replSet", "rs0"]
-
-        mongo2:
-            image: mongo:latest
-            container_name: mongo2
-            ports:
-            - "27018:27017"
-            volumes:
-            - mongo2-data:/data/db
-            networks:
-            - mongo-cluster
-            command: ["mongod", "--replSet", "rs0"]
-
-        mongo3:
-            image: mongo:latest
-            container_name: mongo3
-            ports:
-            - "27019:27017"
-            volumes:
-            - mongo3-data:/data/db
-            networks:
-            - mongo-cluster
-            command: ["mongod", "--replSet", "rs0"]
-
-    volumes:
-        mongo1-data:
-        mongo2-data:
-        mongo3-data:
-
-    networks:
-        mongo-cluster:
-   ```
-
-### Шаг 4: Запуск контейнеров
+### Шаг 3: Запуск контейнеров
 
 1. **Запустите Docker Compose**:
-   - В командной строке выполните следующую команду для запуска контейров:
-   ```bash
-   docker-compose up -d
-   ```
-   или
+   - В командной строке выполните следующую команду для запуска контейнеров:
    ```bash
    docker-compose up --build --force-recreate
    ```
@@ -102,7 +44,7 @@
    docker-compose ps
    ```
 
-### Шаг 5: Подключение к MongoDB
+### Шаг 4: Подключение к MongoDB
 
 1. **Подключитесь к первому экземпляру MongoDB**:
    - Выполните команду:
@@ -110,7 +52,7 @@
    docker exec -it mongo1 mongosh
    ```
 
-### Шаг 6: Инициализация репликационного набора
+### Шаг 5: Инициализация репликационного набора
 
 1. **Инициализируйте репликационный набор**:
    - Введите следующую команду в `mongosh`:
@@ -131,10 +73,10 @@
    rs.status();
    ```
 
-### Шаг 7: Использование MongoDB
-
-1. **Создайте и активируйте виртуальное окружение**
-2. **Установите зависимости из requirements.txt**
+### Шаг 6: Протестируйте использование MongoDB
+1. **Перейдите в корень проекта**
+1. **Создайте и активируйте виртуальное окружение удобным для вас способом**
+2. **Установите зависимости из `requirements.txt`**
 3. **Запустите файл `main.py`**
 4. **В консоли должно появиться что-то похожее на:**
 ```bash
@@ -160,11 +102,4 @@
     Вставлен документ с id: 674c751123641122fd84ae5e
     Найден документ: {'_id': ObjectId('674c751123641122fd84ae5d'), 'id': 0, 'name': 'Alice'}
     Найдено документов: 1
-    doc={'_id': ObjectId('674c751123641122fd84ae5d'), 'id': 0, 'name': 'Alice'}
-    Изменено 1 документ(ов).
-    Найден документ: {'_id': ObjectId('674c751123641122fd84ae5d'), 'id': 0, 'name': 'Alice', 'age': 31}
-    Найден документ: {'_id': ObjectId('674c751123641122fd84ae5e'), 'id': 1, 'name': 'Bob'}
-    Удалено 1 документ(ов).
-    Документ не найден.
-    Изменено 0 документ(ов).
-```
+    doc={'_id': ObjectId('674c751123641122fd
