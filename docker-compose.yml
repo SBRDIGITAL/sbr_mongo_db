@@ -1,0 +1,19 @@
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo_1
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data/db/mongo_data_1:/data/db
+    networks:
+      - mongo-cluster
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+volumes:
+  mongo_data:
+
+networks:
+  mongo-cluster:
