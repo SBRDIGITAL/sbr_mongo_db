@@ -1,4 +1,4 @@
-# Методичка по разворачиванию MongoDB в Docker Compose
+# Методичка по развёртыванию MongoDB в Docker Compose
 
 ### Шаг 1: Установка Docker и Docker Compose
 
